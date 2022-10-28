@@ -1,0 +1,21 @@
+{{ form(form) }}
+
+<table border="1">
+    {% for s in students %}
+      <tr>
+        <td>{{ s.name }}
+        </td>
+        <td>
+          <a href="{{
+          path('student_detail2', {id: s.id }) }}">
+            Voir détail
+          </a>
+        </td>
+        <td>
+          <a href="{{
+              path('student_delete2', {id: s.id }) }}">
+              Supprimer
+              </a> </td>
+      </tr>
+    {% endfor %}
+  </table>

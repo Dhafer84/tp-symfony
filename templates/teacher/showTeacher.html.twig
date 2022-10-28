@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShowTeacherController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Bonjour {{name}}! ✅</h1>
+    {#<h1> {{classe}}! ✅</h1>#}
+    {#commentaire: cette partie ne sera pas interpereté dans la partie HTML#}
+    {%if name == 'dhafer'%}
+    <h2>
+    Message se termine par e
+    </h2>
+    {% endif %}
+
+    <img src="{{ asset('images/1632927582-7714-jaquette-avant.jpg') }}" alt="">
+
+    {% for classe in classes %}
+    {{classe}}
+    {% endfor %}
+
+
+    
+</div>
+{% endblock %}

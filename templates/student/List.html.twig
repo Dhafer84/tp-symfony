@@ -1,0 +1,12 @@
+<table>
+{% for s in students %}
+    <tr>
+        <td>{{ s.name }}
+        <a href="{{ path ('student_detail2', {id:s.id})}}"> Voir Detail </a>
+        </td>
+        <td>{{ s.name }}
+        <a href="{{ path ('student_delete2', {id:s.id})}}"> Supprimer </a>
+        </td>
+    </tr>
+{% endfor %}
+</table>

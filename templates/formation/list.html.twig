@@ -1,0 +1,83 @@
+<table class="avectri">
+	<thead>
+		<tr>
+			<th>Ref</th>
+			<th>Titre</th>
+			<th>Description</th>
+			<th>date_debut</th>
+			<th>date_fin</th>
+			<th data-type="num">nb_participants</th>
+
+
+		</tr>
+	</thead>
+	<tbody>
+		{% for formation in formations %}
+			<tr>
+				<td>{{formation.ref}}</td>
+				<td>{{formation.Titre|upper}}</td>
+				<td>{{formation.Description}}</td>
+				<td>{{formation.date_debut}}</td>
+				<td>{{formation.date_fin}}</td>
+                <td>{% if formation.nb_participants==0 %} <a  class="btn" href="{{ path ('detail',{'detail': formation.Titre})}}">participer</a> {% endif %}</td>
+				<td>{{formation.nb_participants}}</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+Afficher le nombre des formations.
+{% set count = 0 %}
+{% for Titre in formations %}
+	{% set count = count+1 %}
+{% endfor %}
+<h2>
+	nombre de formation={{ count }}
+</h2>
+
+Afficher les titres des formations théoriques.
+{% for formation in formations %}
+	{%if formation.Description == 'formation theorique' %}
+		<h2>
+			{{formation.Titre}}
+		</h2>
+	{% endif %}
+{% endfor %}
+
+Afficher le titre de la formation ayant le plus grand nombre de participants.
+{% set maxValue = 0 %}
+{% for formation in formations %}
+	{% set maxValue = max(formation.nb_participants,formation.Titre, maxValue)%}
+
+{% endfor %}
+<h2>
+
+	{{maxValue}}
+
+</h2>
+
+Afficher le nombre total de participants dans toutes les formations.
+{% set sum = 0 %}
+{% set loopOutput %}
+{% for formation in formations %}
+	{% set sum = sum + formation.nb_participants %}
+{% endfor %}
+{% endset %}
+<h2>
+	somme ={{ sum }}
+</h2>
+
+Ajouter une condition dans le cas où le tableau n’est pas défini et/ou vide.
+
+{# {% for formation in formations %} #}
+	{% if formations is empty %}
+		<h2>
+			Tableau est vide
+		</h2>
+    {% else %}
+    <h2>
+			Tableau n'est pas vide
+		</h2>
+	{% endif %}
+{# {% endfor %} #}
